@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React from "react";
+import "./App.css";
+import Header from "./Header";
+import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Checkout from "./Checkout";
+import Login from "./Login";
 
-import { Footer } from './components/Footer';
-import { Navbar } from './components/Navbar';
-import { Routes } from './components/Routes';
-
-const App = () => {
-  const [darkTheme, setDarkTheme] = useState(false);
-
+function App() {
   return (
-    <div className={darkTheme ? 'dark' : ''}>
-      <div className="dark:bg-gray-900 bg-gray-100 dark:text-gray-200 black min-h-screen">
-        <Navbar setDarkTheme={setDarkTheme} darkTheme={darkTheme} />
-        <Routes />
-        <Footer />
+    <Router>
+      <div className="app">
+        <Switch>
+          {/* Home Page Route */}
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
+          <Route path="/">
+            <Header />
+            <Home />
+          </Route>
+        </Switch>
       </div>
-    </div>
-
+    </Router>
   );
-};
+}
 
 export default App;
+// import shortcut ctrl + space
